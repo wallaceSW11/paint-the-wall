@@ -1,0 +1,53 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    max-width: 80%;
+    margin: auto;
+    border: 1px solid $primaryColor;
+    border-radius: 10px;
+}
+
+.header {
+    // text-align: center;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.field {
+    display: flex;
+    flex: 1 1 auto;
+}
+
+.action {
+    margin: 0 10px;
+    padding-bottom: 5px;
+}
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.footer h4 {
+    text-align: center;
+}
+
+.footer-content {
+    margin: auto;
+    min-width: 200px;
+}
+
+.info-three ul {
+    margin: 0 10px;
+}

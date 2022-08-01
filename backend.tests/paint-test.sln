@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30114.105
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "paint-the-wall", "..\backend\paint-the-wall.csproj", "{CCE363AF-E8DD-4A44-B5E2-5E329FD8C80A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "paint-tests", "paint-tests\paint-tests.csproj", "{477CD947-CAD5-4B78-8726-CF26853AEC49}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CCE363AF-E8DD-4A44-B5E2-5E329FD8C80A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCE363AF-E8DD-4A44-B5E2-5E329FD8C80A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCE363AF-E8DD-4A44-B5E2-5E329FD8C80A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCE363AF-E8DD-4A44-B5E2-5E329FD8C80A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{477CD947-CAD5-4B78-8726-CF26853AEC49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{477CD947-CAD5-4B78-8726-CF26853AEC49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{477CD947-CAD5-4B78-8726-CF26853AEC49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{477CD947-CAD5-4B78-8726-CF26853AEC49}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
