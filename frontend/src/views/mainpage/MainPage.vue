@@ -6,157 +6,34 @@
             </h1>
         </div>
         <div class="main-content">
-            <div class="card">
-                <div class="header">
-                    <title-page text="Parede 1" />
-                </div>
-                <div class="content">
-                    <div class="row">
-                        <div class="field">
-                            <InputLabel
-                                label="Altura (centímetro)"
-                                type="number"
-                                v-model="walls.firstWall.height"
-                            />
-                        </div>
-                        <div class="field">
-                            <InputLabel
-                                label="Largura (centímetro)"
-                                type="number"
-                                v-model="walls.firstWall.width"
-                            />
-                        </div>
-                        <div class="field">
-                            <InputLabel
-                                label="Portas"
-                                type="Number"
-                                v-model="walls.firstWall.doors"
-                            />
-                        </div>
-                        <div class="field">
-                            <InputLabel
-                                label="Janelas"
-                                type="Number"
-                                v-model="walls.firstWall.windows"
-                            />
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="header">
-                    <title-page text="Parede 2" />
-                </div>
-                <div class="content">
-                    <div class="row">
-                        <div class="field">
-                            <InputLabel
-                                label="Altura (centímetro)"
-                                type="number"
-                                v-model="walls.secondWall.height"
-                            />
-                        </div>
-                        <div class="field">
-                            <InputLabel
-                                label="Largura (centímetro)"
-                                type="number"
-                                v-model="walls.secondWall.width"
-                            />
-                        </div>
-                        <div class="field">
-                            <InputLabel
-                                label="Portas"
-                                type="Number"
-                                v-model="walls.secondWall.doors"
-                            />
-                        </div>
-                        <div class="field">
-                            <InputLabel
-                                label="Janelas"
-                                type="Number"
-                                v-model="walls.secondWall.windows"
-                            />
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="header">
-                    <title-page text="Parede 3" />
-                </div>
-                <div class="content">
-                    <div class="row">
-                        <div class="field">
-                            <InputLabel
-                                label="Altura (centímetro)"
-                                type="number"
-                                v-model="walls.thirdWall.height"
-                            />
-                        </div>
-                        <div class="field">
-                            <InputLabel
-                                label="Largura (centímetro)"
-                                type="number"
-                                v-model="walls.thirdWall.width"
-                            />
-                        </div>
-                        <div class="field">
-                            <InputLabel
-                                label="Portas"
-                                type="Number"
-                                v-model="walls.thirdWall.doors"
-                            />
-                        </div>
-                        <div class="field">
-                            <InputLabel
-                                label="Janelas"
-                                type="Number"
-                                v-model="walls.thirdWall.windows"
-                            />
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <div class="header">
-                    <title-page text="Parede 4" />
-                </div>
-                <div class="content">
-                    <div class="row">
-                        <div class="field">
-                            <InputLabel
-                                label="Altura (centímetro)"
-                                type="number"
-                                v-model="walls.fourthWall.height"
-                            />
-                        </div>
-                        <div class="field">
-                            <InputLabel
-                                label="Largura (centímetro)"
-                                type="number"
-                                v-model="walls.fourthWall.width"
-                            />
-                        </div>
-                        <div class="field">
-                            <InputLabel
-                                label="Portas"
-                                type="Number"
-                                v-model="walls.fourthWall.doors"
-                            />
-                        </div>
-                        <div class="field">
-                            <InputLabel
-                                label="Janelas"
-                                type="Number"
-                                v-model="walls.fourthWall.windows"
-                            />
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <wallcard
+                title="Parede 1"
+                @height="(val) => (walls.firstWall.height = val)"
+                @width="(val) => (walls.firstWall.width = val)"
+                @doors="(val) => (walls.firstWall.doors = val)"
+                @windows="(val) => (walls.firstWall.windows = val)"
+            />
+            <wallcard
+                title="Parede 2"
+                @height="(val) => (walls.secondWall.height = val)"
+                @width="(val) => (walls.secondWall.width = val)"
+                @doors="(val) => (walls.secondWall.doors = val)"
+                @windows="(val) => (walls.secondWall.windows = val)"
+            />
+            <wallcard
+                title="Parede 3"
+                @height="(val) => (walls.thirdWall.height = val)"
+                @width="(val) => (walls.thirdWall.width = val)"
+                @doors="(val) => (walls.thirdWall.doors = val)"
+                @windows="(val) => (walls.thirdWall.windows = val)"
+            />
+            <wallcard
+                title="Parede 4"
+                @height="(val) => (walls.fourthWall.height = val)"
+                @width="(val) => (walls.fourthWall.width = val)"
+                @doors="(val) => (walls.fourthWall.doors = val)"
+                @windows="(val) => (walls.fourthWall.windows = val)"
+            />
         </div>
         <div class="action">
             <button-custom text="Calcular" @clicked="calculate" />
@@ -201,18 +78,17 @@
 </template>
 
 <script>
-import InputLabel from "@/components/inputs/input/InputLabel.vue";
-import TitlePage from "@/components/titles/title/TitlePage.vue";
 import Walls from "@/models/Walls";
 import Cans from "@/models/Cans";
 import paintService from "@/services/paint-service";
 import ButtonCustom from "@/components/buttons/buttons/button/ButtonCustom.vue";
+import wallcard from "@/components/cards/wallcard/wallcard.vue";
 
 export default {
     name: "MainPage",
     data() {
         return {
-            teste: "2",
+            teste: "",
             fail: false,
             occurrences: "",
             walls: new Walls(),
@@ -220,10 +96,10 @@ export default {
         };
     },
     components: {
-        InputLabel,
-        TitlePage,
         ButtonCustom,
+        wallcard,
     },
+
     methods: {
         calculate() {
             // validar cadastro

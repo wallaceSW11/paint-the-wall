@@ -5,7 +5,10 @@ function calculate(walls) {
         return api
             .post("/paint", walls)
             .then((response) => resolve(response))
-            .catch((error) => reject(error));
+            .catch((error) => {
+                console.log(error);
+                reject(error);
+            });
     });
 }
 
