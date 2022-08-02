@@ -14,7 +14,7 @@
         <div class="action">
             <button-custom text="Calcular" @clicked="calculate" />
         </div>
-        <div v-if="!!cans.totalSquareMeter || fail" class="footer">
+        <div v-if="!!cansNeeded.totalSquareMeter || fail" class="footer">
             <div class="footer-header">
                 <h4>Resultado</h4>
             </div>
@@ -31,20 +31,23 @@
                 <div class="info-one">
                     <span
                         ><strong>M² total:</strong>
-                        {{ cans.totalSquareMeter }}</span
+                        {{ cansNeeded.totalSquareMeter }}</span
                     >
                 </div>
                 <div class="info-two">
                     <span
                         ><strong>Total de litros:</strong>
-                        {{ cans.totalLiters }}</span
+                        {{ cansNeeded.totalLiters }}</span
                     >
                 </div>
                 <div class="info-three">
                     <span><strong>Latas:</strong></span>
                     <ul>
-                        <li v-for="(can, index) in cans.cans" :key="index">
-                            {{ can.quantity }}x {{ can.liters }} L
+                        <li
+                            v-for="(cansNeeded, index) in cansNeeded.cans"
+                            :key="index"
+                        >
+                            {{ cansNeeded.quantity }}x {{ cansNeeded.liters }} L
                         </li>
                     </ul>
                 </div>
@@ -55,7 +58,7 @@
 
 <script>
 import Walls from "@/models/Walls";
-import Cans from "@/models/Cans";
+import CansNeeded from "@/models/CansNeeded";
 import paintService from "@/services/paint-service";
 import ButtonCustom from "@/components/buttons/buttons/button/ButtonCustom.vue";
 import wallcard from "@/components/cards/wallcard/wallcard.vue";
@@ -67,7 +70,7 @@ export default {
             fail: false,
             occurrences: "",
             walls: new Walls(),
-            cans: new Cans(),
+            cansNeeded: new CansNeeded(),
         };
     },
     components: {
@@ -91,8 +94,7 @@ export default {
             paintService
                 .calculate(this.walls)
                 .then((result) => {
-                    console.log(result);
-                    this.cans = new Cans(result.data);
+                    this.cansNeeded = new CansNeeded(result.data);
                 })
                 .catch((err) => {
                     console.log(err.response.data.occurrences);

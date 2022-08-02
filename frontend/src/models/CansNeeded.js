@@ -1,6 +1,6 @@
 import Can from "./Can";
 
-export default class Cans {
+export default class CansNeeded {
     constructor(obj) {
         obj = obj || {};
 
