@@ -1,13 +1,4 @@
-class Wall {
-    constructor(obj) {
-        obj = obj || {};
-
-        this.height = obj.height;
-        this.width = obj.width;
-        this.doors = obj.doors;
-        this.windows = obj.windows;
-    }
-}
+import Wall from "./Wall.js";
 
 export default class Walls {
     constructor(obj) {

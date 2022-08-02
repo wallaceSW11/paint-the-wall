@@ -8,14 +8,14 @@
                 <div class="field">
                     <InputLabel
                         label="Altura (centímetro)"
-                        v-model="internHeight"
+                        v-model="wall.height"
                         type="number"
                     />
                 </div>
                 <div class="field">
                     <InputLabel
                         label="Largura (centímetro)"
-                        v-model="internWidth"
+                        v-model="wall.width"
                         type="number"
                     />
                 </div>
@@ -23,14 +23,14 @@
                     <InputLabel
                         label="Portas"
                         type="Number"
-                        v-model="internDoors"
+                        v-model="wall.doors"
                     />
                 </div>
                 <div class="field">
                     <InputLabel
                         label="Janelas"
                         type="Number"
-                        v-model="internWindows"
+                        v-model="wall.windows"
                     />
                 </div>
             </div>
@@ -41,56 +41,44 @@
 <script>
 import InputLabel from "@/components/inputs/input/InputLabel.vue";
 import TitlePage from "@/components/titles/title/TitlePage.vue";
+import Wall from "@/models/Wall";
 
 export default {
     name: "WallCard",
-    emits: ["height", "width", "doors", "windows"],
+    emits: ["update:modelValue"],
     props: {
         title: {
             type: String,
             default: "",
         },
-    },
-    data() {
-        return {
-            internHeight: null,
-            internWidth: null,
-            internDoors: null,
-            internWindows: null,
-        };
-    },
-    created() {},
-    watch: {
-        internHeight(newValue) {
-            this.$emit("height", newValue);
-        },
-        internWidth(newValue) {
-            this.$emit("width", newValue);
-        },
-        internDoors(newValue) {
-            this.$emit("doors", newValue);
-        },
-        internWindows(newValue) {
-            this.$emit("windows", newValue);
+        modelValue: {
+            type: Object,
+            default() {
+                return {};
+            },
         },
     },
-
     components: {
         InputLabel,
         TitlePage,
     },
-    computed: {
-        // inputWall() {
-        //     this.$emit("wall", this.inputWall);
-        // },
-        // inputWall: {
-        //     get: function () {
-        //         return this.value;
-        //     },
-        //     set: function (newValue) {
-        //         this.$emit("onChange", newValue);
-        //     },
-        // },
+    data() {
+        return {
+            wall: new Wall(),
+        };
+    },
+    watch: {
+        modelValue(newValue) {
+            if (!newValue) return;
+
+            this.wall = newValue;
+        },
+        wall: {
+            handler(newValue) {
+                this.$emit("update:modelValue", newValue);
+            },
+            deep: true,
+        },
     },
 };
 </script>

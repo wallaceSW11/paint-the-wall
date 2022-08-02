@@ -5,7 +5,7 @@
         <input
             :type="type"
             :placeholder="placeHolder"
-            :value="modelValue"
+            :value="internValue"
             @input="$emit('update:modelValue', $event.target.value)"
             ref="myInput"
         />
@@ -25,23 +25,19 @@ export default {
     },
     emits: ["update:modelValue"],
     data() {
-        return {};
+        return {
+            internValue: null,
+        };
     },
-
+    watch: {
+        modelValue(newValue) {
+            this.internValue = newValue;
+        },
+    },
     mounted() {
         if (this.autoFocus) {
             this.$refs.myInput.focus();
         }
-    },
-    computed: {
-        inputValue: {
-            get: function () {
-                return this.value;
-            },
-            set: function (newValue) {
-                this.$emit("onChange", newValue);
-            },
-        },
     },
 };
 </script>

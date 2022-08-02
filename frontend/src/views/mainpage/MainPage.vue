@@ -6,34 +6,10 @@
             </h1>
         </div>
         <div class="main-content">
-            <wallcard
-                title="Parede 1"
-                @height="(val) => (walls.firstWall.height = val)"
-                @width="(val) => (walls.firstWall.width = val)"
-                @doors="(val) => (walls.firstWall.doors = val)"
-                @windows="(val) => (walls.firstWall.windows = val)"
-            />
-            <wallcard
-                title="Parede 2"
-                @height="(val) => (walls.secondWall.height = val)"
-                @width="(val) => (walls.secondWall.width = val)"
-                @doors="(val) => (walls.secondWall.doors = val)"
-                @windows="(val) => (walls.secondWall.windows = val)"
-            />
-            <wallcard
-                title="Parede 3"
-                @height="(val) => (walls.thirdWall.height = val)"
-                @width="(val) => (walls.thirdWall.width = val)"
-                @doors="(val) => (walls.thirdWall.doors = val)"
-                @windows="(val) => (walls.thirdWall.windows = val)"
-            />
-            <wallcard
-                title="Parede 4"
-                @height="(val) => (walls.fourthWall.height = val)"
-                @width="(val) => (walls.fourthWall.width = val)"
-                @doors="(val) => (walls.fourthWall.doors = val)"
-                @windows="(val) => (walls.fourthWall.windows = val)"
-            />
+            <wallcard title="Parede 1" v-model="walls.firstWall" />
+            <wallcard title="Parede 2" v-model="walls.secondWall" />
+            <wallcard title="Parede 3" v-model="walls.thirdWall" />
+            <wallcard title="Parede 4" v-model="walls.fourthWall" />
         </div>
         <div class="action">
             <button-custom text="Calcular" @clicked="calculate" />
@@ -88,7 +64,6 @@ export default {
     name: "MainPage",
     data() {
         return {
-            teste: "",
             fail: false,
             occurrences: "",
             walls: new Walls(),
@@ -99,10 +74,17 @@ export default {
         ButtonCustom,
         wallcard,
     },
-
+    watch: {
+        walls(newValue) {
+            console.log("walls alterado");
+            console.log(newValue);
+        },
+    },
     methods: {
         calculate() {
-            // validar cadastro
+            // console.log(this.walls);
+
+            // // validar cadastro
             this.fail = false;
             this.occurrences = "";
 
